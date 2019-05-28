@@ -1,13 +1,19 @@
 package javaapplication1;
 
+import javafx.print.Printer;
+
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Dictionary;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 class Test extends Component implements Accessible{
@@ -42,7 +48,7 @@ class Test extends Component implements Accessible{
                     JFrame f=new JFrame("Pop Up Dictionary");
 
                     final TextField tf=new TextField();
-                    tf.setBounds(100,50, 150,20);
+                    tf.setBounds(100,50, 150,30);
                     Button b1=new Button("Find Definition");
                     b1.setBounds(100,100,150,30);
 
@@ -102,7 +108,7 @@ class Test extends Component implements Accessible{
                                              public void actionPerformed(ActionEvent e) {
 
 
-                                                 String string = "Meaning of the word";
+                                                 //String string = "Meaning of the word";
 
                                                  try {
 
@@ -111,7 +117,7 @@ class Test extends Component implements Accessible{
                                                              new BufferedWriter(new FileWriter("./test.txt"));
 
 
-                                                     writer.write(string);
+                                                     writer.write(String.valueOf(tf));
 
                                                      writer.close();
                                                  } catch (IOException e1) {
@@ -127,31 +133,20 @@ class Test extends Component implements Accessible{
                     f.setSize(500,400);
                     f.setLayout(null);
                     f.setVisible(true);
-                   /* b4.addActionListener(new ActionListener() {
+                    b4.addActionListener(new ActionListener() {
                         @Override
-                        public void actionPerformed(ActionEvent e) {
-                            try{
-                                txt.print();
-                            }
-                            catch9printerexception ex) {
+                       public void actionPerformed(java.awt.event.ActionEvent ex) {
 
-                                logger.getlogger(printersys.class.getname()).log(level.severe, null, ex)
+                            try{
+                                tf.print(def);
+                            }
+                            catch (PrinterException e) {
+
+                                Logger.getLogger(Printer.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
-                    });*/
 
-
-
-
-
-
-
-
-
-
-
-
-
+                    });
 
 
 
